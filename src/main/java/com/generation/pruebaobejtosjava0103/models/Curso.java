@@ -2,6 +2,7 @@ package com.generation.pruebaobejtosjava0103.models;
 
 public class Curso {
     //Cursos: id, seccion, cantidadAlumn, añocursa. funcion: notaPromedioGeneral
+    //no lo utilizo en el main
 
     //ATRIBUTOS
 

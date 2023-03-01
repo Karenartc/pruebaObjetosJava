@@ -2,6 +2,7 @@ package com.generation.pruebaobejtosjava0103.models;
 
 public class Materia {
     // Materia: nombre, horario, cantidadAlumnMax, notaAprobar.
+    //no lo utilizo en el main
 
     //ATRIBUTOS
 

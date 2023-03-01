@@ -15,6 +15,11 @@ public class Pruebaobejtosjava0103Application {
 	//para ingresar y crear un hashmap de alumnos
 	public static HashMap<String, ArrayList<Double>> ingresarAlumn(Scanner teclado){
 		HashMap<String, ArrayList<Double>> cuaderNotas = new HashMap<String, ArrayList<Double>>(); 
+		//solo voy a pedir ingresar dos atributos del objeto ALumno
+		//intente ingresar los demas y luego pedir lo que necesitaba y no descubri como
+		//tenia dos opciones esta que cree solo un hashmap de notas y nombre. 
+		//o dos hashmaps el anterior y uno con todos los datos que no iba a utilizar
+		//asi que por eficiencia del programa me quede con la primera opcion
 
 		System.out.print("\n¿Cuántos alumnos hay en su curso? ");
 		  int cantidadAlumn = teclado.nextInt();
@@ -23,7 +28,7 @@ public class Pruebaobejtosjava0103Application {
 			int cantidadNotas = teclado.nextInt();
 
 			for(int i = 1; i <= cantidadAlumn; i++){
-				//creo objeto alumno (solo ingresare dos datos, puede buscra mas abajo o en el file que mas se puede ingresar)
+				//creo objeto alumno (solo ingresare dos datos, puede buscar mas abajo o en el file que mas se puede ingresar)
 				Alumno alumnoCurso = new Alumno();
 				//Guarda las notas
 				ArrayList<Double> notasAlumn = new ArrayList<Double>();
@@ -35,13 +40,13 @@ public class Pruebaobejtosjava0103Application {
 				for(int x = 1; x <= cantidadNotas; x++){
 					Double nota= 0.0;
 					do{
-						System.out.print("Ingrese las nota "+x+" del alumno n°"+i+": ");
+						System.out.print("Ingrese la nota "+x+" del alumno n°"+i+": ");
 						nota = teclado.nextDouble();
 					}while(nota <1.0 || nota >7.0);
 					notasAlumn.add(nota);
 				}
-				alumnoCurso.setNotas(notasAlumn);
-				cuaderNotas.put(alumnoCurso.getNombre(), notasAlumn);
+				alumnoCurso.setNotas(notasAlumn); //guarda en objeto alumno el array de notas
+				cuaderNotas.put(alumnoCurso.getNombre(), notasAlumn); //crea hashmap
 			  }
 		return cuaderNotas;	  
 	}
@@ -59,19 +64,22 @@ public class Pruebaobejtosjava0103Application {
 	public static void mostarAlumn(Scanner teclado, HashMap<String, ArrayList<Double>> cuadernoAlumn){
 		//guarda solo la cantidad ingresada de nombres
 		ArrayList<String> nombresAlumn = new ArrayList<String>();
-		//guarda todos los nombre del hashmap
+		//guarda todos los nombres del hashmap
 		ArrayList<String> todosnombresAlumn = new ArrayList<String>();
 
-
+		//saca todos los nombres del hashmap y lo guarda en el array
 		for(String x : cuadernoAlumn.keySet()){
-			todosnombresAlumn.add(x);
+			todosnombresAlumn.add(x); 
 		}
 		System.out.print("\n¿Cuántos alumnos quiere mostar del curso?");
 		int cantidadAlumn = teclado.nextInt();
 
+		//toma los primeros x nombres del anterior array
 		for(int i = 0; i < cantidadAlumn; i++){
 			nombresAlumn.add(todosnombresAlumn.get(i));
 		}
+
+		//resultado
 		System.out.println("\nLe mostrare los nombres de " + cantidadAlumn + " alumnos");
 		System.out.println("Los cuales son: " + nombresAlumn);
 
@@ -80,19 +88,19 @@ public class Pruebaobejtosjava0103Application {
 
 	//dado arreglo, obtener mejor, peor y promedio notas
 	public static void mejorPeorPromedio(ArrayList<Double> notaAlumn, String nombreAlumn){
-		Double mejorNota = 0.0;
-		Double peorNota = 7.0;
-		Double promedio = promedioNota(notaAlumn);
+		Double mejorNota = 0.0; //variable que guarda la mayor nota
+		Double peorNota = 7.0; //variable que guarda la menor nota
+		Double promedio = promedioNota(notaAlumn); //variable que guarda lo que traiga la funcion promedio (para no tener que volver a hacer todo el procedimiento)
 
 		for(int i = 0; i < notaAlumn.size(); i++){
 			if(notaAlumn.get(i) > mejorNota){
 				mejorNota = notaAlumn.get(i);
-			}
+			} 
 			if(notaAlumn.get(i) < peorNota){
 				peorNota = notaAlumn.get(i);
 			}
 		}
-
+		//resultado
 		System.out.println("\nEl Alumno " + nombreAlumn + " tiene un promedio de notas de " + promedio);
 			System.out.println("Con la mejor nota de (" + mejorNota + ") y la peor nota de ("+ peorNota + ")");
 	}
@@ -123,8 +131,9 @@ public class Pruebaobejtosjava0103Application {
 		  System.out.println("Por favor Identifiquese: ");
 
 		  Profesor profealMando = new Profesor();
-
-		  System.out.print("¿Cuál es su nombre? ");
+		
+		  //ingreso algunos datos (no todos, solo los necesarios para el programa) del objeto profesor
+		  System.out.print("\n¿Cuál es su nombre? ");
 		  profealMando.setNombre(teclado.nextLine());
 		  System.out.print("¿Qué materia imparte? ");
 		  profealMando.setMateriaImparte(teclado.nextLine());
@@ -156,7 +165,7 @@ public class Pruebaobejtosjava0103Application {
 				}
 			}else{
 				System.out.println("\nHa elegido la opcion Numero 0");
-				System.out.println("Muchas Gracias por usar el Aplicativo");
+				System.out.println("Muchas Gracias " + profealMando.getNombre() + " por usar el Aplicativo");
 				System.out.println("tenga Buen Día :D");
 			}
 		}
